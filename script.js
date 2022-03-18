@@ -142,7 +142,30 @@ function fiveDayForecast() {
       divCard.attr("class", "card text-white bg-primary mb-3 card1");
       fiveDayEl.append(divCard);
 
-      var divHeader;
+      var divBody = $("<div>");
+      divBody.attr("class", "card-body");
+      divCard.append(divBody);
+
+      var divHeader = $("<div>");
+      divHeader.attr("class", "card-header");
+      var m = moment(`${myWeather[i].date}`).format("MM-DD-YYYY");
+      divHeader.text(m);
+      divCard.append(divHeader);
+
+      var divIcon = $("<img>");
+      divIcon.attr("class", "icons");
+      divIcon.attr(
+        "src",
+        `http://openweathermap.org/img/wn/${myWeather[i].icon}@2x.png`
+      );
+      divBody.append(divIcon);
+
+      var pTemp = $("<p>").text(`Temperature: ${myWeather[i].temp}°F`);
+      divBody.append(pTemp);
+      var pHumid = $("<p>").text(`Humidity: ${myWeather[i].humidity}%`);
+      divBody.append(pHumid);
+      var pFeel = $("<p>").text(`Feels Like: ${myWeather[i].feels_like}°F`);
+      divBody.append(pFeel);
     }
   });
 }
