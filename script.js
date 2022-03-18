@@ -3,20 +3,21 @@ var city = "Los Angeles";
 
 //current time/date
 var date = moment().format("dddd, MMMM Do YYYY");
-var dateTime = moment().format("YYYY-MM-DD HH:MM:SS");
+var dateTime = moment().format("YYYY-MM-DD hh:mm:ss a");
 
 // search history
 var searchHistory = [];
 $(".search").on("click", function (event) {
   event.preventDefault();
-  city = $(this).parent(".btnPar").siblings(".textVal").value().trim();
+  city = $(this).parent(".btnPar").siblings(".textVal").val().trim();
   if (city === "") {
     return;
   }
   searchHistory.push(city);
   localStorage.setItem("city", JSON.stringify(searchHistory));
-  fiveDay.empty();
+  fiveDayEl.empty();
   history();
+  todayWeather();
 });
 // search history buttons
 var historyEl = $(".searchHistory");
@@ -46,9 +47,9 @@ function history() {
   });
 }
 // today card body (weather data, 5-day forecast)
-var cardTodayCity = $(".cardBodyToday");
+var cardTodayBody = $(".cardBodyToday");
 function todayWeather() {
-  var currentURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}lat=57&lon=-2.15&appid=${key}&units=imperial`;
+  var currentURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=imperial`;
 
   $(cardTodayBody).empty();
 
@@ -62,7 +63,7 @@ function todayWeather() {
     // icon
     $(".icons").attr(
       "src",
-      `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
+      `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
     );
     // humidity
     var pHumid = $("<p>").text(`Humidity: ${response.main.humidity}%`);
@@ -71,7 +72,7 @@ function todayWeather() {
     var pTemp = $("<p>").text(`Feels like: ${response.main.feels_like}°F`);
     cardTodayBody.append(pTemp);
     // wind speed
-    var pWind = $("<p>").text(`Wind speed: ${response.main.wind_speed}mph`);
+    var pWind = $("<p>").text(`Wind speed: ${response.wind.speed}mph`);
     cardTodayBody.append(pWind);
     // temp
     var pEl = $("<p>").text(`Temperature: ${response.main.temp}°F`);
@@ -82,14 +83,14 @@ function todayWeather() {
     console.log(latitude);
     console.log(longitude);
 
-    var uviURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,daily&appid=${key}`;
+    var uviURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,daily&appid=${key}`;
 
     $.ajax({
       url: uviURL,
       method: "GET",
     }).then(function (response) {
       var uviSpan = $("<span>").text(response.current.uvi);
-      var pUvi = $("<p>").text("UV Index:");
+      var pUvi = $("<p>").text(`UV Index:`);
       var uvi = response.current.uvi;
       pUvi.append(uviSpan);
       cardTodayBody.append(pUvi);
@@ -107,7 +108,7 @@ function todayWeather() {
       }
     });
   });
-  fiveDay();
+  fiveDayForecast();
 }
 // 5-day forecast
 var fiveDayEl = $(".fiveDay");
@@ -139,7 +140,7 @@ function fiveDayForecast() {
     for (let i = 0; i < myWeather.length; i++) {
       var divCard = $("<div>");
       divCard.attr("style", "max-width: 200px;");
-      divCard.attr("class", "card text-white bg-primary mb-3 card1");
+      divCard.attr("class", "card text-white bg-info mb-3 card1");
       fiveDayEl.append(divCard);
 
       var divBody = $("<div>");
@@ -156,7 +157,7 @@ function fiveDayForecast() {
       divIcon.attr("class", "icons");
       divIcon.attr(
         "src",
-        `http://openweathermap.org/img/wn/${myWeather[i].icon}@2x.png`
+        `https://openweathermap.org/img/wn/${myWeather[i].icon}@2x.png`
       );
       divBody.append(divIcon);
 

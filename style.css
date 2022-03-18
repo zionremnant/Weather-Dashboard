@@ -1,9 +1,7 @@
 h1 {
-  background-color: rosybrown;
-  color: darkolivegreen;
+  background-color: teal;
+  color: white;
   text-align: center;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
 }
 label {
   margin-top: 10px;
@@ -14,15 +12,15 @@ label {
   margin: 10px;
 }
 .historyRowBtn {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
-.column1 {
-  background-color: aliceblue;
-}
-.column2 {
-  background-color: rgb(red, green, blue);
-}
+/* .column1 {
+  background-color: black;
+} */
+/* .column2 {
+  background-color: rgb(red, green, blue); */
+/* } */
 .green {
   background-color: greenyellow;
 }
