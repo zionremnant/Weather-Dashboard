@@ -79,5 +79,38 @@ function todayWeather() {
     // latitude & longitude
     var latitude = response.coord.lat;
     var longitude = response.coord.lon;
+    console.log(latitude);
+    console.log(longitude);
+
+    var uviURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,daily&appid=${key}`;
+
+    $.ajax({
+      url: uviURL,
+      method: "GET",
+    }).then(function (response) {
+      var uviSpan = $("<span>").text(response.current.uvi);
+      var pUvi = $("<p>").text("UV Index:");
+      var uvi = response.current.uvi;
+      pUvi.append(uviSpan);
+      cardTodayBody.append(pUvi);
+      //uv index
+      if (uvi >= 0 && uvi <= 2) {
+        uviSpan.attr("class", "green");
+      } else if (uvi > 2 && uvi <= 5) {
+        uviSpan.attr("class", "yellow");
+      } else if (uvi > 5 && uvi <= 7) {
+        uviSpan.attr("class", "orange");
+      } else if (uvi > 7 && uvi <= 10) {
+        uviSpan.attr("class", "red");
+      } else {
+        uviSpan.attr("class", "purple");
+      }
+    });
   });
+  fiveDay();
+}
+var fiveDayEl = $(".fiveDay");
+
+function fiveDayForecast(){
+    var fiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?lat=57&lon=-2.15&appid=
 }
