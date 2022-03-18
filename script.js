@@ -3,7 +3,7 @@ var city = "Los Angeles";
 
 //current time/date
 var date = moment().format("dddd, MMMM Do YYYY");
-var dateTime = moment().format("YYYY-MM-DD hh:mm:ss a");
+var dateTime = moment().format("YYYY-MM-DD hh:mm ");
 
 // search history
 var searchHistory = [];
