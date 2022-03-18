@@ -65,6 +65,19 @@ function todayWeather() {
       `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
     );
     // humidity
-    var pHumid=$("<p>").
+    var pHumid = $("<p>").text(`Humidity: ${response.main.humidity}%`);
+    cardTodayBody.append(pHumid);
+    // feels like
+    var pTemp = $("<p>").text(`Feels like: ${response.main.feels_like}°F`);
+    cardTodayBody.append(pTemp);
+    // wind speed
+    var pWind = $("<p>").text(`Wind speed: ${response.main.wind_speed}mph`);
+    cardTodayBody.append(pWind);
+    // temp
+    var pEl = $("<p>").text(`Temperature: ${response.main.temp}°F`);
+    cardTodayBody.append(pEl);
+    // latitude & longitude
+    var latitude = response.coord.lat;
+    var longitude = response.coord.lon;
   });
 }
