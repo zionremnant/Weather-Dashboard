@@ -38,5 +38,10 @@ function history() {
     return;
   }
   // start searching btn
-  $(".historyBtn").on("click", function (event) {});
+  $(".historyBtn").on("click", function (event) {
+    event.preventDefault();
+    city = $(this).text();
+    fiveDayEl.empty();
+    todayWeather();
+  });
 }
