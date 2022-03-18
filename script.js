@@ -121,8 +121,28 @@ function fiveDayForecast() {
   }).then(function (response) {
     var myWeather = [];
     var fiveDayArray = response.list;
+    // obj
     $.each(fiveDayArray, function (index, value) {
-      testObj;
+      testObj = {
+        date: value.dt_txt.split(" ")[0],
+        time: value.dt_txt.split(" ")[1],
+        feels_like: value.main.feels_like,
+        humidity: value.main.humidity,
+        temp: value.main.temp,
+        icon: value.weather[0].icon,
+      };
+      if (value.dt_txt.split(" ")[1] === "12:00:00") {
+        myWeather.push(testObj);
+      }
     });
+    // insert cards
+    for (let i = 0; i < myWeather.length; i++) {
+      var divCard = $("<div>");
+      divCard.attr("style", "max-width: 200px;");
+      divCard.attr("class", "card text-white bg-primary mb-3 card1");
+      fiveDayEl.append(divCard);
+
+      var divHeader;
+    }
   });
 }
