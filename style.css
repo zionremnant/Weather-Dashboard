@@ -7,6 +7,41 @@ h1 {
 }
 label {
   margin-top: 10px;
-  font-weight: bold;
   font-size: 20px;
+  font-weight: bold;
+}
+.card {
+  margin: 10px;
+}
+.historyRowBtn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.column1 {
+  background-color: aliceblue;
+}
+.column2 {
+  background-color: rgb(red, green, blue);
+}
+.green {
+  background-color: greenyellow;
+}
+.orange {
+  background-color: orange;
+}
+.purple {
+  background-color: purple;
+}
+.yellow {
+  background-color: yellow;
+}
+.red {
+  background-color: red;
+}
+.cardTodayDate {
+  font-size: 20px;
+}
+.icons {
+  width: 60px;
+  height: 60px;
 }
