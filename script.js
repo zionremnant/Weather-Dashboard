@@ -169,3 +169,12 @@ function fiveDayForecast() {
     }
   });
 }
+function initLoad() {
+  var searchHistoryStore = JSON.parse(localStorage.getItem("city"));
+  if (searchHistoryStore !== null) {
+    searchHistory = searchHistoryStore;
+  }
+  history();
+  todayWeather();
+}
+initLoad();
