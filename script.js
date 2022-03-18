@@ -109,8 +109,20 @@ function todayWeather() {
   });
   fiveDay();
 }
+// 5-day forecast
 var fiveDayEl = $(".fiveDay");
 
-function fiveDayForecast(){
-    var fiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?lat=57&lon=-2.15&appid=
+function fiveDayForecast() {
+  var fiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${key}`;
+
+  $.ajax({
+    url: fiveDayURL,
+    method: "GET",
+  }).then(function (response) {
+    var myWeather = [];
+    var fiveDayArray = response.list;
+    $.each(fiveDayArray, function (index, value) {
+      testObj;
+    });
+  });
 }

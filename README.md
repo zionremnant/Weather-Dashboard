@@ -2,7 +2,8 @@
 
 ## Overview
 
-Used the fetch() method to make requests, parse through the returned datasets, and convert them to HTML elements.
+Third-party APIs allow to access their data and functionality by making requests with specific parameters to a URL. The weather dashboard is built so that it runs in the browser and feature updated HTML and CSS.
+It also uses the OpenWeather One Call API to retrieve weather data for cities.
 
 ## Resources
 
