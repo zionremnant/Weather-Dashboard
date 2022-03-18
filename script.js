@@ -45,3 +45,26 @@ function history() {
     todayWeather();
   });
 }
+// today card body (weather data, 5-day forecast)
+var cardTodayCity = $(".cardBodyToday");
+function todayWeather() {
+  var currentURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}lat=57&lon=-2.15&appid=${key}&units=imperial`;
+
+  $(cardTodayBody).empty();
+
+  $.ajax({
+    url: currentURL,
+    method: "GET",
+  }).then(function (response) {
+    $(".cardTodaydate").text(date);
+    $(".cardTodayCity").text(response.name);
+
+    // icon
+    $(".icons").attr(
+      "src",
+      `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
+    );
+    // humidity
+    var pHumid=$("<p>").
+  });
+}
